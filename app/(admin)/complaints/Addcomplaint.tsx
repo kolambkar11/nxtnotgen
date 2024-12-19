@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -40,7 +40,7 @@ type resultProps = {
 };
 
 const Addcomplaint = () => {
-  const newDate = new Date();
+  // const newDate = new Date();
   const [id, setId] = useState(1);
   const [idCode, setIdCode] = useState("1000");
   const [complaintDate, setComplaintDate] = useState("");
@@ -61,6 +61,7 @@ const Addcomplaint = () => {
   //https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints
 
   const addComplaint = async () => {
+    console.log(APIData);
     const newDate = new Date();
     try {
       const response = await axios.post(
@@ -81,6 +82,7 @@ const Addcomplaint = () => {
           ipAddress: "127.0.0.1",
         }
       );
+      setAdminEmail(adminEmail);
       setId(id + 1);
       setAPIData((prev) => [...prev, response.data]); // Update UI locally
       console.log(response);
