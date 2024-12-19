@@ -23,7 +23,7 @@ export function page() {
           <CardHeader>
             <CardTitle>Account</CardTitle>
             <CardDescription>
-              Make changes to your account here. Click save when you're done.
+              Make changes to your account here. Click save when you are done.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -46,7 +46,7 @@ export function page() {
           <CardHeader>
             <CardTitle>Password</CardTitle>
             <CardDescription>
-              Change your password here. After saving, you'll be logged out.
+              Change your password here. After saving, you will be logged out.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">

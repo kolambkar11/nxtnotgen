@@ -13,7 +13,7 @@ import { Eye, Pencil, Trash2 } from "lucide-react";
 import Addcomplaint from "./Addcomplaint";
 type resultProps = {
   id: number;
-  idCode: any;
+  idCode: string;
   complaintDate: string;
   username: string;
   platform: string;
@@ -30,7 +30,7 @@ type resultProps = {
 const Complaints = () => {
   const [APIData, setAPIData] = useState<resultProps[]>([]);
   console.log(APIData);
-  function handleEdit(idc: number): any {
+  function handleEdit(idc: number) {
     console.log(idc);
   }
   function handleDelete() {
@@ -99,7 +99,7 @@ const Complaints = () => {
                   <Pencil
                     className="cursor-pointer"
                     onClick={() => {
-                      handleEdit(a.idCode);
+                      handleEdit(1);
                     }}
                   />
                   <Trash2 className="cursor-pointer" onClick={handleDelete} />

@@ -22,11 +22,10 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { jurisdictionData } from "../../data/jurisdiction";
 import axios from "axios";
-import type { NextRequest } from "next/server";
 
 type resultProps = {
   id: number;
-  idCode: any;
+  idCode: string;
   complaintDate: string;
   username: string;
   platform: string;
@@ -50,14 +49,14 @@ const Addcomplaint = () => {
   const [jurisdiction, setJurisdiction] = useState("");
   const [postUrl, setPostUrl] = useState("");
   const [summary, setSummary] = useState("");
-  const [file, setFile] = useState("");
-  const [status, setStatus] = useState("pending");
+  // const [file, setFile] = useState("");
+  // const [status, setStatus] = useState("pending");
   const [adminEmail, setAdminEmail] = useState("");
-  const [dateAdded, setDateAdded] = useState(newDate);
-  const [curIpAddress, setCurIpAddress] = useState("");
+  // const [dateAdded, setDateAdded] = useState(newDate);
+  // const [curIpAddress, setCurIpAddress] = useState("");
   const [APIData, setAPIData] = useState<resultProps[]>([]);
-  const IPGeo_URL = "https://api.ipgeolocation.io/ipgeo";
-  const IpAddress = useRef();
+  // const IPGeo_URL = "https://api.ipgeolocation.io/ipgeo";
+  // const IpAddress = useRef();
 
   //https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints
 
