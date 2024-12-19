@@ -1,16 +1,13 @@
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import React from "react";
-
-const Login = () => {
+export default function page() {
   return (
-    <div className="py-10 w-1/2 mx-auto">
-      <h1 className="text-2xl text-center mb-4">Login</h1>
-      <Input placeholder="Enter Email" />
-      <Link href="/forgot-password">Forgot Password</Link>
-      <Link href="/registration">Registration</Link>
-    </div>
+    <>
+      <section className="mx-auto w-1/2 text-center p-72">
+        <h1 className="">
+          <button className="bg-red-600 p-2 text-white rounded-xl">
+            Login using Gmail
+          </button>
+        </h1>
+      </section>
+    </>
   );
-};
-
-export default Login;
+}

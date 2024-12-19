@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 
 const Letters = () => {
   return (
-    <div>
+    <section className="p-4">
       <h1>Letters</h1>
-    </div>
+    </section>
   );
 };
 

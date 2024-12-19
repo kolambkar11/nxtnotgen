@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
+import ComplaintsTable from "./Complaints";
 export const metadata: Metadata = {
   title: "Complaints | Notice Generator",
   description: "Complaints Page for Notice Generator",
@@ -7,9 +8,10 @@ export const metadata: Metadata = {
 
 const Complaints = () => {
   return (
-    <div>
-      <h1>Complaints</h1>
-    </div>
+    <section className="p-4">
+      <h1 className="text-center text-4xl my-4">Complaints</h1>
+      <ComplaintsTable />
+    </section>
   );
 };
 
