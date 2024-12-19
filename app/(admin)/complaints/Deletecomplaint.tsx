@@ -14,18 +14,18 @@ import {
 import { Plus } from "lucide-react";
 
 const Deletecomplaint = () => {
-  const handleDelete = async (id: number) => {
-    if (window.confirm("Are you sure you want to delete this data?")) {
-      try {
-        await axios.delete(
-          `https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints/${id}`
-        );
-        // setAPIData((prev) => prev.filter((item) => item.id !== id)); // Update UI locally
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
+  //   const handleDelete = async (id: number) => {
+  //     if (window.confirm("Are you sure you want to delete this data?")) {
+  //       try {
+  //         await axios.delete(
+  //           `https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints/${id}`
+  //         );
+  //         // setAPIData((prev) => prev.filter((item) => item.id !== id)); // Update UI locally
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   };
   return (
     <>
       <AlertDialog>
@@ -42,9 +42,7 @@ const Deletecomplaint = () => {
           <div className="grid gap-2"></div>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete(1)}>
-              Delete Complaint
-            </AlertDialogAction>
+            <AlertDialogAction>Delete Complaint</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
