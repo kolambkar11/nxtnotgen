@@ -61,6 +61,8 @@ const Addcomplaint = () => {
   //https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints
 
   const addComplaint = async () => {
+    console.log(APIData);
+
     const newDate = new Date();
     try {
       const response = await axios.post(
