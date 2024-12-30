@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -42,7 +42,7 @@ type resultProps = {
 const Addcomplaint = () => {
   // const newDate = new Date();
   const [id, setId] = useState(1);
-  const [idCode, setIdCode] = useState("1000");
+  const [idCode, setIdCode] = useState(1000);
   const [complaintDate, setComplaintDate] = useState("");
   const [username, setUserName] = useState("");
   const [platform, setPlatform] = useState("");
@@ -61,7 +61,6 @@ const Addcomplaint = () => {
   //https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints
 
   const addComplaint = async () => {
-    console.log(APIData);
     const newDate = new Date();
     try {
       const response = await axios.post(
@@ -85,11 +84,33 @@ const Addcomplaint = () => {
       setAdminEmail(adminEmail);
       setId(id + 1);
       setAPIData((prev) => [...prev, response.data]); // Update UI locally
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const api = async () => {
+      try {
+        const response = await fetch(
+          "https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints",
+          {
+            method: "GET",
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        const jsonData = await response.json();
+        const lastID = jsonData[jsonData.length - 1];
+        setIdCode(lastID.idCode + 1);
+        setAPIData(jsonData);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    api();
+  }, []);
 
   const handleSelectPlatform = (value: string) => {
     setPlatform(value);
@@ -113,11 +134,7 @@ const Addcomplaint = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="grid gap-2">
-            <Input
-              readOnly
-              onChange={(e) => setIdCode(e.target.value)}
-              value={idCode}
-            />
+            <Input readOnly value={idCode} />
             <Input
               type="date"
               onChange={(e) => setComplaintDate(e.target.value)}

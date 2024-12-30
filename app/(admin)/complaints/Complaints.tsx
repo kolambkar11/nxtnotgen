@@ -9,11 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { ExternalLink, Eye, Pencil, Trash2 } from "lucide-react";
 import Addcomplaint from "./Addcomplaint";
+import axios from "axios";
 type resultProps = {
   id: number;
-  idCode: string;
+  idCode: number;
   complaintDate: string;
   username: string;
   platform: string;
@@ -29,15 +30,25 @@ type resultProps = {
 
 const Complaints = () => {
   const [APIData, setAPIData] = useState<resultProps[]>([]);
-  console.log(APIData);
   function handleEdit(idc: number) {
     console.log(idc);
   }
-  function handleDelete() {
-    alert("this is handle Delete");
-  }
-  function handleView() {
-    alert("this is handle View");
+
+  const handleDelete = async (id: number) => {
+    // return false;
+    if (window.confirm("Are you sure you want to delete this data?")) {
+      try {
+        await axios.delete(
+          `https://675bc38f9ce247eb19374d66.mockapi.io/nco/complaints/${id}`
+        );
+        setAPIData((prev) => prev.filter((item) => item.id !== id)); // Update UI locally
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  function handleView(id: number) {
+    alert(id);
   }
 
   useEffect(() => {
@@ -55,9 +66,7 @@ const Complaints = () => {
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-
         const jsonData = await response.json();
-        // console.log(jsonData);
         setAPIData(jsonData);
       } catch (error) {
         console.log("error", error);
@@ -90,7 +99,7 @@ const Complaints = () => {
                 <TableCell>{a.platform}</TableCell>
                 <TableCell>
                   <a href={a.postUrl} target="_blank">
-                    View
+                    <ExternalLink className="w-5" />
                   </a>
                 </TableCell>
                 <TableCell>{a.dateAdded}</TableCell>
@@ -102,8 +111,18 @@ const Complaints = () => {
                       handleEdit(1);
                     }}
                   />
-                  <Trash2 className="cursor-pointer" onClick={handleDelete} />
-                  <Eye className="cursor-pointer" onClick={handleView} />
+                  <Trash2
+                    className="cursor-pointer"
+                    onClick={() => {
+                      handleDelete(a.id);
+                    }}
+                  />
+                  <Eye
+                    className="cursor-pointer"
+                    onClick={() => {
+                      handleView(a.id);
+                    }}
+                  />
                 </TableCell>
               </TableRow>
             );
